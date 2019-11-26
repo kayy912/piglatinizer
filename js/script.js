@@ -3,16 +3,29 @@ $( "document" ).ready(function() { //this helps your jQuery to work. Write all o
 function isVowel(x) {
          return ("aeiouAEIOU".indexOf(x) !== -1);
 }
-$("#button").click(function(){
-    let word = $(".input").val();
-    let first = word.charAt(0);
+function piglatinize(oneword) {
+     let first = oneword.charAt(0);
     if(isVowel(first)){
-        word = word + "ay";
+        oneword = oneword + "ay" + " ";
      }
      else{
-
+         let first = oneword.charAt(0);
+         let rest = oneword.slice(1);
+        oneword = rest + first + "ay" + " ";
      }
- $(".output").text(word);
+    return oneword;
+}
+
+$("#button").click(function(){
+    let input = $(".input").val();
+
+ let words = input.split(" ");
+ console.log(words);
+  $(".output").text("");
+ words.forEach(function(word){
+     $(".output").append(piglatinize(word));
+ });
+
 });
 
 
@@ -21,3 +34,12 @@ $("#button").click(function(){
 
 
 });
+
+
+
+
+
+
+
+
+
